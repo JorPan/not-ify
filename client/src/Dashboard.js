@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import TrackSearchResult from "./TrackSearchResult";
+import Player from "./Player";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import SpotifyWebApi from "spotify-web-api-node";
+import axios from "axios";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "9207087173054e9c80ac65b3ee0a168c",
@@ -13,6 +15,29 @@ export default function Dashboard({ code }) {
   const accessToken = useAuth(code);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [playingTrack, setPlayingTrack] = useState();
+  const [lyrics, setLyrics] = useState("");
+  //   const [userPlayLists, setUserPlaylists] = useState([]);
+
+  function chooseTrack(track) {
+    setPlayingTrack(track);
+    setLyrics("");
+  }
+
+  useEffect(() => {
+    if (!playingTrack) return;
+
+    axios
+      .get("http://localhost:3001/lyrics", {
+        params: {
+          track: playingTrack.title,
+          artist: playingTrack.artist,
+        },
+      })
+      .then((res) => {
+        setLyrics(res.data.lyrics);
+      });
+  }, [playingTrack]);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -49,8 +74,30 @@ export default function Dashboard({ code }) {
     return () => (cancel = true);
   }, [search, accessToken]);
 
+  //   useEffect(() => {
+  //     spotifyApi.getMe().then(
+  //       function (data) {
+  //         console.log("Some information about the authenticated user", data.body);
+  //       },
+  //       function (err) {
+  //         console.log("Something went wrong!", err);
+  //       }
+  //     );
+  //   }, []);
+
+  //   useEffect(() => {
+  //     spotifyApi.getUserPlaylists("pandasaywhat").then(
+  //       function (data) {
+  //         console.log("Retrieved playlists", data.body);
+  //       },
+  //       function (err) {
+  //         console.log("Something went wrong!", err);
+  //       }
+  //     );
+  //   }, []);
+
   return (
-    <Container>
+    <Container className="dashboard">
       <form className="search-form" noValidate autoComplete="off">
         <TextField
           variant="outlined"
@@ -68,9 +115,14 @@ export default function Dashboard({ code }) {
               className="track-search-results"
               track={track}
               key={track.uri}
+              chooseTrack={chooseTrack}
             />
           );
         })}
+      </div>
+      <div className="lyrics">{lyrics}</div>
+      <div className="bottom">
+        <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
     </Container>
   );

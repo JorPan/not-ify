@@ -29,19 +29,53 @@
   width: 64px;
 }
 
-.track-search-results {
+.search-results {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .search-result {
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(226, 226, 226);
-  width: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   margin: 3px;
   padding: 2px;
   cursor: pointer;
-  /* align-items: center; */
+  align-items: center;
+}
+
+.bottom {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+
+.lyrics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 70vw;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+.song-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
 }
