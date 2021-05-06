@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <h1 className="title">Not-ify</h1>
-      {code ? <Dashboard code={code} /> : <Login />}
+      {code ? <Dashboard code={code} /> : <Login className="login-page" />}
     </div>
   );
 }
