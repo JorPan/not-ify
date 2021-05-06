@@ -50,16 +50,24 @@
 }
 
 .bottom {
-  width: 100vw;
   position: fixed;
+  left: 5vw;
+  right: 5vw;
   bottom: 0;
+}
+
+.lyric-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15vw;
 }
 
 .lyrics {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 70vw;
+  width: 50vw;
 }
 
 .dashboard {

@@ -120,7 +120,12 @@ export default function Dashboard({ code }) {
           );
         })}
       </div>
-      <div className="lyrics">{lyrics}</div>
+      <div className="lyric-section">
+        <div></div>
+        <div className="lyrics">{lyrics}</div>
+        <div></div>
+      </div>
+
       <div className="bottom">
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
