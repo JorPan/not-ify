@@ -172,3 +172,24 @@
   box-shadow: 1px 1px 1px 1px rgb(44, 116, 66);
   cursor: pointer;
 }
+
+.show-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(226, 226, 226);
+  width: 150px;
+  height: 250px;
+  border-radius: 10px;
+  margin: 3px;
+  padding: 2px;
+  cursor: pointer;
+  align-items: center;
+}

@@ -155,6 +155,7 @@ export default function Dashboard({ code }) {
       );
     setViewPlaylists(false);
     setPlaylistTable(true);
+    setAddedCurrentSong(false);
   }
 
   function addCurrentSongToSelectedPlaylist() {
@@ -243,7 +244,20 @@ export default function Dashboard({ code }) {
       </div>
 
       {playlistTable === true && playlistSongs.length > 0 ? (
-        <div>
+        <div className="show-list">
+          {playlistSongs.map((track) => {
+            return (
+              <div className="show-item">
+                <p className="artist-name">{track.track.artists[0].name}</p>
+                <p className="song-title">{track.track.name}</p>
+                <img
+                  className="album-art"
+                  src={track.track.album.images[0].url}
+                  alt="album-art"
+                />
+              </div>
+            );
+          })}
           {/* <DataGrid
             rows={"rows"}
             columns={"columns"}
