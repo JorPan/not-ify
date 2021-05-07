@@ -22,7 +22,6 @@ export default function Dashboard({ code }) {
   //   const [mode, setMode] = "";
 
   const [search, setSearch] = useState("");
-  const [searchBar, setSearchBar] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [lyrics, setLyrics] = useState("");
 
@@ -31,6 +30,8 @@ export default function Dashboard({ code }) {
   const [userPlayLists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
   const [addedCurrentSong, setAddedCurrentSong] = useState(false);
+  const [playlistSongs, setPlaylistSongs] = useState([]);
+  const [playlistTable, setPlaylistTable] = useState(false);
 
   useEffect(() => {
     spotifyApi.getMe().then(
@@ -58,7 +59,7 @@ export default function Dashboard({ code }) {
         }
       );
     }
-  }, [viewPlaylists]);
+  }, [viewPlaylists, user]);
 
   useEffect(() => {
     if (!playingTrack) return;
@@ -112,14 +113,8 @@ export default function Dashboard({ code }) {
 
   function showPlaylists() {
     setViewPlaylists(!viewPlaylists);
-    setSearchBar(false);
     setCreatePlaylist(false);
-  }
-
-  function showSearchBar() {
-    setSearchBar(!searchBar);
-    setViewPlaylists(false);
-    setCreatePlaylist(false);
+    setPlaylistTable(false);
   }
 
   function clearLyrics() {
@@ -137,16 +132,28 @@ export default function Dashboard({ code }) {
 
   function createNewPlaylist() {
     setCreatePlaylist(!createPlaylist);
-    setSearchBar(false);
     setViewPlaylists(false);
   }
 
-  function selectPlaylist(event) {
-    if (event.target.id === playlist) {
-      setPlaylist("");
-    } else {
-      setPlaylist(event.target.id);
-    }
+  function viewPlaylist(event) {
+    setPlaylist(event.target.id);
+    const playlist = event.target.id;
+    spotifyApi
+      .getPlaylistTracks(playlist, {
+        offset: 1,
+        limit: 50,
+        fields: "items",
+      })
+      .then(
+        (data) => {
+          setPlaylistSongs(data.body.items);
+        },
+        (err) => {
+          console.log("Something went wrong!", err);
+        }
+      );
+    setViewPlaylists(false);
+    setPlaylistTable(true);
   }
 
   function addCurrentSongToSelectedPlaylist() {
@@ -164,18 +171,9 @@ export default function Dashboard({ code }) {
 
   return (
     <Container className="dashboard">
-      {!playlist ? null : (
-        <p className="selected-playlist" onClick={selectPlaylist}>
-          Selected playlist ID: {playlist}
-        </p>
-      )}
-
       <div className="buttons">
         <Button variant="contained" onClick={showPlaylists}>
           {viewPlaylists === false ? "Show Playlists" : "Hide Playlists"}
-        </Button>
-        <Button variant="contained" onClick={showSearchBar}>
-          {searchBar === false ? "Show Search Bar" : "Hide Search Bar"}
         </Button>
         <Button variant="contained" onClick={createNewPlaylist}>
           {createPlaylist === false
@@ -191,64 +189,60 @@ export default function Dashboard({ code }) {
           </Button>
         ) : null}
       </div>
-      {userPlayLists.length > 0 ? (
-        <h3 className="selection-instructions">
-          Click on a playlist card to select or deselect it, then you can add a
-          currently playing song to it!
-        </h3>
-      ) : null}
+      <div className="search-section">
+        <form className="search-form" noValidate autoComplete="off">
+          <TextField
+            variant="outlined"
+            className="search-bar"
+            id="search-bar"
+            label="Search Artists/Songs"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          {!search ? null : (
+            <Button variant="contained" onClick={clearSearch}>
+              Clear Search
+            </Button>
+          )}
+        </form>
+        <div className="search-results">
+          {searchResults.map((track) => {
+            return (
+              <TrackSearchResult
+                className="track-search-results"
+                track={track}
+                key={track.uri}
+                chooseTrack={chooseTrack}
+              />
+            );
+          })}
+        </div>
+        <div className="lyric-section">
+          <div></div>
+          <div className="lyrics">{lyrics}</div>
+          <div>
+            {lyrics ? (
+              <Button variant="contained" onClick={clearLyrics}>
+                Clear Lyrics
+              </Button>
+            ) : null}
+          </div>
+        </div>
+      </div>
+
       <div className="playlist-list">
         {userPlayLists.length === 0
           ? null
           : userPlayLists.map((playlist) => (
-              <div key={playlist.id} onClick={selectPlaylist}>
+              <div key={playlist.id} onClick={viewPlaylist}>
                 <Playlist key={playlist.id} playlist={playlist} />
               </div>
             ))}
       </div>
-      {searchBar === false ? null : (
-        <div className="search-section">
-          <form className="search-form" noValidate autoComplete="off">
-            <TextField
-              variant="outlined"
-              className="search-bar"
-              id="search-bar"
-              label="Search Artists/Songs"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
 
-            {!search ? null : (
-              <Button variant="contained" onClick={clearSearch}>
-                Clear Search
-              </Button>
-            )}
-          </form>
-          <div className="search-results">
-            {searchResults.map((track) => {
-              return (
-                <TrackSearchResult
-                  className="track-search-results"
-                  track={track}
-                  key={track.uri}
-                  chooseTrack={chooseTrack}
-                />
-              );
-            })}
-          </div>
-          <div className="lyric-section">
-            <div></div>
-            <div className="lyrics">{lyrics}</div>
-            <div>
-              {lyrics ? (
-                <Button variant="contained" onClick={clearLyrics}>
-                  Clear Lyrics
-                </Button>
-              ) : null}
-            </div>
-          </div>
-        </div>
-      )}
+      {playlistTable === true && playlistSongs.length > 0 ? <div></div> : null}
+
       {createPlaylist === false ? null : (
         <CreatePlaylist spotifyApi={spotifyApi} />
       )}

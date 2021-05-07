@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 
 function Playlist({ playlist }) {
@@ -11,7 +11,7 @@ function Playlist({ playlist }) {
         src={playlist.images.length > 0 ? playlist.images[0].url : null}
         href="playlist image"
       />
-      <Button variant="contained">View / Edit</Button>
+      {/* <Button onvariant="contained">View / Edit</Button> */}
       {/* <Button variant="contained">Delete</Button> */}
     </div>
   );
