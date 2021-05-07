@@ -49,6 +49,18 @@
   align-items: center;
 }
 
+.left {
+  position: fixed;
+  left: 0;
+  width: 50vw;
+}
+
+.right {
+  position: fixed;
+  right: 0;
+  width: 50vw;
+}
+
 .bottom {
   position: fixed;
   left: 5vw;
@@ -86,4 +98,28 @@
 .song-title {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
+}
+
+.playlist-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.playlist {
+  height: 150px;
+  width: 300px;
+  border: 1px solid rgb(230, 230, 230);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.playlist-image {
+  height: 64px;
+  width: 64px;
 }
