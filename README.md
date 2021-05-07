@@ -13,12 +13,12 @@ Now you can also view your playlists, create a new playlist, select a playlist b
 Server Set Up
 - cd server 
   - npm i
-    - npm run devStart
+  - npm run devStart
 
 Client Set Up
 - cd client
   - npm i
-    - npm start
+  - npm start
 
 
 Click to log in via spotify
