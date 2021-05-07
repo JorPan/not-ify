@@ -3,6 +3,7 @@ import useAuth from "./useAuth";
 import TrackSearchResult from "./TrackSearchResult";
 import Player from "./Player";
 import Playlist from "./Playlist";
+import SongSearch from "./SongSearch";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,11 +16,15 @@ const spotifyApi = new SpotifyWebApi({
 
 export default function Dashboard({ code }) {
   const accessToken = useAuth(code);
+  const [user, setUser] = useState("");
+  const [playingTrack, setPlayingTrack] = useState();
+
+  const [mode, setMode] = "";
+
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
-  const [user, setUser] = useState("");
+
   const [userPlayLists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
 
@@ -130,7 +135,16 @@ export default function Dashboard({ code }) {
               <Playlist key={playlist.id} playlist={playlist} />
             ))}
       </div>
-
+      {/* <SongSearch
+        search
+        track
+        lyrics
+        clearSearch
+        chooseTrack
+        clearLyrics
+        searchResults
+        setSearch
+      /> */}
       <form className="search-form" noValidate autoComplete="off">
         <TextField
           variant="outlined"
