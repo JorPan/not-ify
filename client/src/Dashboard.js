@@ -141,10 +141,15 @@ export default function Dashboard({ code }) {
   }
 
   function selectPlaylist(event) {
-    setPlaylist(event.target.id);
+    if (event.target.id === playlist) {
+      setPlaylist("");
+    } else {
+      setPlaylist(event.target.id);
+    }
   }
 
   function addCurrentSongToSelectedPlaylist() {
+    if (!playingTrack || !playlist) return;
     spotifyApi.addTracksToPlaylist(`${playlist}`, [`${playingTrack.uri}`]).then(
       (data) => {
         console.log("Added tracks to playlist!", data);
@@ -157,12 +162,8 @@ export default function Dashboard({ code }) {
 
   return (
     <Container className="dashboard">
-      {!playlist ? null : <p>Current playlist ID: {playlist}</p>}
-      {playlist && playingTrack ? (
-        <Button variant="contained" onClick={addCurrentSongToSelectedPlaylist}>
-          Add Current Song to Selected Playlist
-        </Button>
-      ) : null}
+      {!playlist ? null : <p>Selected playlist ID: {playlist}</p>}
+
       <div className="buttons">
         <Button variant="contained" onClick={showPlaylists}>
           {viewPlaylists === false ? "Show Playlists" : "Hide Playlists"}
@@ -175,17 +176,31 @@ export default function Dashboard({ code }) {
             ? "Create New Playlist"
             : "Cancel New Playlist"}
         </Button>
-        <Button variant="contained">
-          Add Current Song to Selected Playlist
-        </Button>
+        {playlist && playingTrack ? (
+          <Button
+            variant="contained"
+            onClick={addCurrentSongToSelectedPlaylist}
+          >
+            Add Current Song to Selected Playlist
+          </Button>
+        ) : null}
       </div>
-
+      {userPlayLists.length > 0 ? (
+        <h3 className="selection-instructions">
+          Click on a playlist card to select or de-select it, then you can add a
+          currently playing song to it!
+        </h3>
+      ) : null}
       <div className="playlist-list">
         {userPlayLists.length === 0
           ? null
           : userPlayLists.map((playlist) => (
               <div key={playlist.id} onClick={selectPlaylist}>
-                <Playlist key={playlist.id} playlist={playlist} />
+                <Playlist
+                  key={playlist.id}
+                  playlist={playlist}
+                  selectPlaylist={selectPlaylist}
+                />
               </div>
             ))}
       </div>

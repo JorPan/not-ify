@@ -49,7 +49,7 @@ function CreatePlaylist({ spotifyApi }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <label>Public</label>
+        <label className="publicity">Public</label>
         <Checkbox
           label="Public"
           value={isPublic}

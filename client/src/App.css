@@ -53,11 +53,14 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: -10vh;
 }
 
 .buttons {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .bottom {
@@ -127,7 +130,33 @@
 
 .playlist-form {
   margin-top: -10vh;
+  display: flex;
+  justify-content: center;
 }
+
+.playlist-bar {
+  width: 30vw;
+}
+
+.description-bar {
+  width: 40vw;
+}
+
 .playlist-id {
   display: none;
+}
+
+.publicity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0.5rem;
+  margin-right: -0.5rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.selection-instructions {
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
 }

@@ -12,7 +12,7 @@ function Playlist({ playlist }) {
         href="playlist image"
       />
       <Button variant="contained">View / Edit</Button>
-      <Button variant="contained">Delete</Button>
+      {/* <Button variant="contained">Delete</Button> */}
     </div>
   );
 }
