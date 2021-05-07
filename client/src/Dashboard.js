@@ -37,7 +37,7 @@ export default function Dashboard({ code }) {
         console.log(err);
       }
     );
-  }, [viewPlaylists]);
+  });
 
   useEffect(() => {
     if (user) {
@@ -110,47 +110,64 @@ export default function Dashboard({ code }) {
     setViewPlaylists(!viewPlaylists);
   }
 
+  function clearLyrics() {
+    setLyrics("");
+  }
+
+  function clearSearch() {
+    setSearch("");
+  }
+
   return (
     <Container className="dashboard">
-      <div className="left">
-        <Button variant="contained" onClick={showPlaylists}>
-          {viewPlaylists === false ? "Show Playlists" : "Hide Playlists"}
-        </Button>
-        <div className="playlist-list">
-          {userPlayLists.length === 0
-            ? null
-            : userPlayLists.map((playlist) => (
-                <Playlist key={playlist.id} playlist={playlist} />
-              ))}
-        </div>
+      <Button variant="contained" onClick={showPlaylists}>
+        {viewPlaylists === false ? "Show Playlists" : "Hide Playlists"}
+      </Button>
+      <div className="playlist-list">
+        {userPlayLists.length === 0
+          ? null
+          : userPlayLists.map((playlist) => (
+              <Playlist key={playlist.id} playlist={playlist} />
+            ))}
       </div>
-      <div className="right">
-        <form className="search-form" noValidate autoComplete="off">
-          <TextField
-            variant="outlined"
-            className="search-bar"
-            id="search-bar"
-            label="Search Artists/Songs"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </form>
-        <div className="search-results">
-          {searchResults.map((track) => {
-            return (
-              <TrackSearchResult
-                className="track-search-results"
-                track={track}
-                key={track.uri}
-                chooseTrack={chooseTrack}
-              />
-            );
-          })}
-        </div>
-        <div className="lyric-section">
-          <div></div>
-          <div className="lyrics">{lyrics}</div>
-          <div></div>
+
+      <form className="search-form" noValidate autoComplete="off">
+        <TextField
+          variant="outlined"
+          className="search-bar"
+          id="search-bar"
+          label="Search Artists/Songs"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        {!search ? null : (
+          <Button variant="contained" onClick={clearSearch}>
+            Clear Search
+          </Button>
+        )}
+      </form>
+      <div className="search-results">
+        {searchResults.map((track) => {
+          return (
+            <TrackSearchResult
+              className="track-search-results"
+              track={track}
+              key={track.uri}
+              chooseTrack={chooseTrack}
+            />
+          );
+        })}
+      </div>
+      <div className="lyric-section">
+        <div></div>
+        <div className="lyrics">{lyrics}</div>
+        <div>
+          {lyrics ? (
+            <Button variant="contained" onClick={clearLyrics}>
+              Clear Lyrics
+            </Button>
+          ) : null}
         </div>
       </div>
 

@@ -49,18 +49,6 @@
   align-items: center;
 }
 
-.left {
-  position: fixed;
-  left: 0;
-  width: 50vw;
-}
-
-.right {
-  position: fixed;
-  right: 0;
-  width: 50vw;
-}
-
 .bottom {
   position: fixed;
   left: 5vw;
