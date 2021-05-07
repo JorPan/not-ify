@@ -9,7 +9,7 @@
 .login-page {
   display: flex;
   flex-direction: row;
-  margin-left: -5vw;
+  margin-top: 2vh;
 }
 
 .login-button {
@@ -163,11 +163,15 @@
 
 .selected-playlist {
   font-size: 10px;
-  width: 30vw;
+  width: 15vw;
   margin: auto;
+  margin-bottom: 3px;
   display: flex;
   justify-content: center;
   font-family: "Roboto", sans-serif;
   background-color: rgb(46, 211, 46);
   color: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px 1px rgb(44, 116, 66);
+  cursor: pointer;
 }

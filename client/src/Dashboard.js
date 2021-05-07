@@ -193,7 +193,7 @@ export default function Dashboard({ code }) {
       </div>
       {userPlayLists.length > 0 ? (
         <h3 className="selection-instructions">
-          Click on a playlist card to select or de-select it, then you can add a
+          Click on a playlist card to select or deselect it, then you can add a
           currently playing song to it!
         </h3>
       ) : null}
