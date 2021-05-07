@@ -29,8 +29,8 @@ Create Playlists
 
 
 COMING SOON:
-View Songs within Playlist
-Edit playlist info
-Remove playlists
+- View Songs within Playlist
+- Edit playlist info
+- Remove playlists
 
 
