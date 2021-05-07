@@ -10,7 +10,6 @@ function CreatePlaylist({ spotifyApi }) {
   const [isPublic, setIsPublic] = useState(false);
 
   const savePlaylist = () => {
-    console.log(newPlaylistName, description, isPublic);
     spotifyApi
       .createPlaylist(newPlaylistName, {
         description: description,

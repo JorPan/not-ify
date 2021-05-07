@@ -160,3 +160,14 @@
   justify-content: center;
   font-family: "Roboto", sans-serif;
 }
+
+.selected-playlist {
+  font-size: 10px;
+  width: 30vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(46, 211, 46);
+  color: white;
+}

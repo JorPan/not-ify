@@ -30,6 +30,7 @@ export default function Dashboard({ code }) {
   const [createPlaylist, setCreatePlaylist] = useState(false);
   const [userPlayLists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
+  const [addedCurrentSong, setAddedCurrentSong] = useState(false);
 
   useEffect(() => {
     spotifyApi.getMe().then(
@@ -158,11 +159,16 @@ export default function Dashboard({ code }) {
         console.log("Something went wrong!", err);
       }
     );
+    setAddedCurrentSong(true);
   }
 
   return (
     <Container className="dashboard">
-      {!playlist ? null : <p>Selected playlist ID: {playlist}</p>}
+      {!playlist ? null : (
+        <p className="selected-playlist" onClick={selectPlaylist}>
+          Selected playlist ID: {playlist}
+        </p>
+      )}
 
       <div className="buttons">
         <Button variant="contained" onClick={showPlaylists}>
@@ -176,7 +182,7 @@ export default function Dashboard({ code }) {
             ? "Create New Playlist"
             : "Cancel New Playlist"}
         </Button>
-        {playlist && playingTrack ? (
+        {playlist && playingTrack && addedCurrentSong === false ? (
           <Button
             variant="contained"
             onClick={addCurrentSongToSelectedPlaylist}
@@ -196,11 +202,7 @@ export default function Dashboard({ code }) {
           ? null
           : userPlayLists.map((playlist) => (
               <div key={playlist.id} onClick={selectPlaylist}>
-                <Playlist
-                  key={playlist.id}
-                  playlist={playlist}
-                  selectPlaylist={selectPlaylist}
-                />
+                <Playlist key={playlist.id} playlist={playlist} />
               </div>
             ))}
       </div>
