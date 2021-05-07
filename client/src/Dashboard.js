@@ -28,11 +28,6 @@ export default function Dashboard({ code }) {
   const [userPlayLists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
 
-  function chooseTrack(track) {
-    setPlayingTrack(track);
-    setLyrics("");
-  }
-
   useEffect(() => {
     spotifyApi.getMe().then(
       (data) => {
@@ -123,6 +118,11 @@ export default function Dashboard({ code }) {
     setSearch("");
   }
 
+  function chooseTrack(track) {
+    setPlayingTrack(track);
+    setLyrics("");
+  }
+
   return (
     <Container className="dashboard">
       <Button variant="contained" onClick={showPlaylists}>
@@ -136,14 +136,18 @@ export default function Dashboard({ code }) {
             ))}
       </div>
       {/* <SongSearch
-        search
+        User
+        AccessToken
+        PlayingTrack
         track
+        search
+        searchResults
+        setSearch
         lyrics
         clearSearch
         chooseTrack
         clearLyrics
-        searchResults
-        setSearch
+        
       /> */}
       <form className="search-form" noValidate autoComplete="off">
         <TextField
