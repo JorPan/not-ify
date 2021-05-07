@@ -184,7 +184,7 @@ export default function Dashboard({ code }) {
         {userPlayLists.length === 0
           ? null
           : userPlayLists.map((playlist) => (
-              <div onClick={selectPlaylist}>
+              <div key={playlist.id} onClick={selectPlaylist}>
                 <Playlist key={playlist.id} playlist={playlist} />
               </div>
             ))}
