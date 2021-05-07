@@ -7,6 +7,7 @@ import CreatePlaylist from "./CreatePlaylist";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { DataGrid } from "@material-ui/data-grid";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 
@@ -241,7 +242,16 @@ export default function Dashboard({ code }) {
             ))}
       </div>
 
-      {playlistTable === true && playlistSongs.length > 0 ? <div></div> : null}
+      {playlistTable === true && playlistSongs.length > 0 ? (
+        <div>
+          {/* <DataGrid
+            rows={"rows"}
+            columns={"columns"}
+            pageSize={5}
+            checkboxSelection
+          /> */}
+        </div>
+      ) : null}
 
       {createPlaylist === false ? null : (
         <CreatePlaylist spotifyApi={spotifyApi} />
