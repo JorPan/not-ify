@@ -6,7 +6,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   }
 
   return (
-    <div className="search-result" onClick={handlePlay}>
+    <div className="search-result" onClick={handlePlay} key={track.track.uri}>
       <img
         className="album-art"
         src={track.track.album.images[0].url}

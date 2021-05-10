@@ -258,6 +258,7 @@ export default function Dashboard({ code }) {
               //     />
               //   </div>
               <Track
+                id={track.uri}
                 className="track-search-results"
                 track={track}
                 key={track.uri}
