@@ -113,7 +113,7 @@
 
 .playlist {
   font-family: "Roboto", sans-serif;
-  height: 200px;
+  height: 250px;
   width: 200px;
   border: 1px solid rgb(230, 230, 230);
   display: flex;
@@ -179,6 +179,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .show-item {

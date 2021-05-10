@@ -8,7 +8,7 @@ import CreatePlaylist from "./CreatePlaylist";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { DataGrid, GridRowsProp, GridColDef } from "@material-ui/data-grid";
+import PlaylistTable from "./PlaylistTable";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 
@@ -172,6 +172,14 @@ export default function Dashboard({ code }) {
     setAddedCurrentSong(true);
   }
 
+  function editPlayList() {
+    console.log("edit");
+  }
+
+  function removePlayList() {
+    console.log("remove");
+  }
+
   return (
     <Container className="dashboard">
       <div className="buttons">
@@ -239,7 +247,12 @@ export default function Dashboard({ code }) {
           ? null
           : userPlayLists.map((playlist) => (
               <div key={playlist.id} onClick={viewPlaylist}>
-                <Playlist key={playlist.id} playlist={playlist} />
+                <Playlist
+                  key={playlist.id}
+                  playlist={playlist}
+                  editPlayList={editPlayList}
+                  removePlayList={removePlayList}
+                />
               </div>
             ))}
       </div>
@@ -268,6 +281,10 @@ export default function Dashboard({ code }) {
           })}
         </div>
       ) : null}
+
+      {/* {playlistTable === true && playlistSongs.length > 0 ? (
+        <PlaylistTable playlist={playlistSongs} />
+      ) : null} */}
 
       {createPlaylist === false ? null : (
         <CreatePlaylist spotifyApi={spotifyApi} />

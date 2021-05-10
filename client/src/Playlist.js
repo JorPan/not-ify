@@ -11,7 +11,7 @@ function Playlist({ playlist }) {
         src={playlist.images.length > 0 ? playlist.images[0].url : null}
         href="playlist image"
       />
-      {/* <Button onvariant="contained">View / Edit</Button> */}
+      {/* <Button variant="contained">View / Edit</Button> */}
       {/* <Button variant="contained">Delete</Button> */}
     </div>
   );
