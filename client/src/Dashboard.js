@@ -8,7 +8,7 @@ import CreatePlaylist from "./CreatePlaylist";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, GridRowsProp, GridColDef } from "@material-ui/data-grid";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 
@@ -172,10 +172,6 @@ export default function Dashboard({ code }) {
     setAddedCurrentSong(true);
   }
 
-  //   function handlePlay(track) {
-  //     chooseTrack(track);
-  //   }
-
   return (
     <Container className="dashboard">
       <div className="buttons">
@@ -269,12 +265,6 @@ export default function Dashboard({ code }) {
               />
             );
           })}
-          {/* <DataGrid
-            rows={"rows"}
-            columns={"columns"}
-            pageSize={5}
-            checkboxSelection
-          /> */}
         </div>
       ) : null}
 
