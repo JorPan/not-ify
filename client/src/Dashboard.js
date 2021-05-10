@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import TrackSearchResult from "./TrackSearchResult";
+import Track from "./Track";
 import Player from "./Player";
 import Playlist from "./Playlist";
 import CreatePlaylist from "./CreatePlaylist";
@@ -171,6 +172,10 @@ export default function Dashboard({ code }) {
     setAddedCurrentSong(true);
   }
 
+  //   function handlePlay(track) {
+  //     chooseTrack(track);
+  //   }
+
   return (
     <Container className="dashboard">
       <div className="buttons">
@@ -247,15 +252,21 @@ export default function Dashboard({ code }) {
         <div className="show-list">
           {playlistSongs.map((track) => {
             return (
-              <div className="show-item">
-                <p className="artist-name">{track.track.artists[0].name}</p>
-                <p className="song-title">{track.track.name}</p>
-                <img
-                  className="album-art"
-                  src={track.track.album.images[0].url}
-                  alt="album-art"
-                />
-              </div>
+              //   <div className="show-item" onClick={chooseTrack}>
+              //     <p className="artist-name">{track.track.artists[0].name}</p>
+              //     <p className="song-title">{track.track.name}</p>
+              //     <img
+              //       className="album-art"
+              //       src={track.track.album.images[0].url}
+              //       alt="album-art"
+              //     />
+              //   </div>
+              <Track
+                className="track-search-results"
+                track={track}
+                key={track.uri}
+                chooseTrack={chooseTrack}
+              />
             );
           })}
           {/* <DataGrid
