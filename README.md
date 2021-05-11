@@ -23,13 +23,14 @@ Client Set Up
 
 Click to log in via spotify
 
-View List Playlists
+View Playlists
+Click a Playlist to view the songs in it
+Click a Song to play it
 Search Songs / Artists
-Create Playlists
+Create New Playlists
 
 
 COMING SOON:
-- View Songs within Playlist
 - Edit playlist info
 - Remove playlists
 
