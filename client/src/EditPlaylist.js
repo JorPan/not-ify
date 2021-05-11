@@ -4,7 +4,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 
-function EditPlaylist({ spotifyApi, playlist, playlistObj, setEditList }) {
+function EditPlaylist({
+  spotifyApi,
+  playlist,
+  playlistObj,
+  setEditList,
+  cancelEdit,
+}) {
   const [newPlaylistName, setNewPlaylistName] = useState("");
   const [description, setDescription] = useState("");
   const [isPublic, setIsPublic] = useState(false);
@@ -16,7 +22,6 @@ function EditPlaylist({ spotifyApi, playlist, playlistObj, setEditList }) {
   }, []);
 
   const editPlaylist = () => {
-    console.log(playlist, newPlaylistName, description, isPublic);
     spotifyApi
       .changePlaylistDetails(playlist, {
         name: newPlaylistName,
@@ -67,6 +72,9 @@ function EditPlaylist({ spotifyApi, playlist, playlistObj, setEditList }) {
 
         <Button variant="contained" onClick={editPlaylist}>
           Save Playlist
+        </Button>
+        <Button onClick={cancelEdit} variant="outlined">
+          Cancel
         </Button>
       </form>
     </div>

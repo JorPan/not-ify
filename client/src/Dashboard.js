@@ -32,7 +32,7 @@ export default function Dashboard({ code }) {
   const [playlist, setPlaylist] = useState("");
   const [playlistObj, setPlaylistObj] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
-  const [userPlayLists, setUserPlaylists] = useState([]);
+  const [userPlaylists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
   const [addedCurrentSong, setAddedCurrentSong] = useState(false);
   const [playlistSongs, setPlaylistSongs] = useState([]);
@@ -53,18 +53,31 @@ export default function Dashboard({ code }) {
     if (user) {
       spotifyApi.getUserPlaylists(user).then(
         (data) => {
-          if (viewPlaylists === false) {
-            setUserPlaylists([]);
-          } else {
-            setUserPlaylists(data.body.items);
-          }
+          setUserPlaylists(data.body.items);
         },
         (err) => {
           console.log(err);
         }
       );
     }
-  }, [viewPlaylists, user]);
+  }, [user]);
+
+  //   useEffect(() => {
+  //     if (user) {
+  //       spotifyApi.getUserPlaylists(user).then(
+  //         (data) => {
+  //           if (viewPlaylists === false) {
+  //             setUserPlaylists([]);
+  //           } else {
+  //             setUserPlaylists(data.body.items);
+  //           }
+  //         },
+  //         (err) => {
+  //           console.log(err);
+  //         }
+  //       );
+  //     }
+  //   }, [viewPlaylists, user]);
 
   useEffect(() => {
     if (!playingTrack) return;
@@ -194,8 +207,19 @@ export default function Dashboard({ code }) {
     setPlaylistTable(false);
   }
 
+  function cancelEdit() {
+    setEditList(false);
+  }
+
   function removePlaylist() {
-    console.log("remove");
+    setPlaylistTable(false);
+    const playlistToRemove = playlistObj.uri;
+
+    const newPlaylistList = userPlaylists.filter(
+      (list) => list.uri !== playlistToRemove
+    );
+
+    setUserPlaylists(newPlaylistList);
   }
 
   return (
@@ -268,19 +292,19 @@ export default function Dashboard({ code }) {
           playlist={playlist}
           playlistObj={playlistObj}
           setEditList={setEditList}
+          cancelEdit={cancelEdit}
         />
       )}
 
       <div className="playlist-list">
-        {userPlayLists.length === 0
+        {viewPlaylists === false
           ? null
-          : userPlayLists.map((playlist) => (
+          : userPlaylists.map((playlist) => (
               <div key={playlist.id} onClick={viewPlaylist}>
                 <Playlist
                   key={playlist.id}
                   playlist={playlist}
                   editPlaylist={editPlaylist}
-                  removePlaylist={removePlaylist}
                 />
               </div>
             ))}
@@ -295,6 +319,10 @@ export default function Dashboard({ code }) {
             <p className="playlist-title">{playlistObj.description}</p>
             <Button onClick={editPlaylist} variant="outlined">
               Edit Details
+            </Button>
+
+            <Button onClick={removePlaylist} variant="outlined">
+              Remove
             </Button>
           </div>
 
@@ -314,7 +342,9 @@ export default function Dashboard({ code }) {
         </div>
       ) : null}
 
-      {/* {playlistTable === true && playlistSongs.length > 0 ? (
+      {/* {playlistTable === true &&
+      editList === false &&
+      playlistSongs.length > 0 ? (
         <PlaylistTable playlist={playlistSongs} />
       ) : null} */}
 

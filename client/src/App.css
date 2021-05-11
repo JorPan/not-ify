@@ -104,7 +104,7 @@
 
 .playlist-list {
   margin-bottom: 10vh;
-  margin-top: -15vh;
+  margin-top: -17vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -153,6 +153,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: -7vh;
 }
 
 .description-bar {
