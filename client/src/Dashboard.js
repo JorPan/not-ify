@@ -22,8 +22,6 @@ export default function Dashboard({ code }) {
   const [user, setUser] = useState("");
   const [playingTrack, setPlayingTrack] = useState();
 
-  //   const [mode, setMode] = "";
-
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [lyrics, setLyrics] = useState("");
@@ -50,7 +48,8 @@ export default function Dashboard({ code }) {
   });
 
   useEffect(() => {
-    if (user) {
+    if (userPlaylists.length > 0) setUserPlaylists(userPlaylists);
+    else if (user) {
       spotifyApi.getUserPlaylists(user).then(
         (data) => {
           setUserPlaylists(data.body.items);
@@ -60,7 +59,7 @@ export default function Dashboard({ code }) {
         }
       );
     }
-  }, [user]);
+  }, [userPlaylists, user]);
 
   //   useEffect(() => {
   //     if (user) {
@@ -203,8 +202,8 @@ export default function Dashboard({ code }) {
 
   function editPlaylist() {
     setEditList(!editList);
-    setViewPlaylists(false);
     setPlaylistTable(false);
+    setViewPlaylists(true);
   }
 
   function cancelEdit() {
@@ -220,6 +219,7 @@ export default function Dashboard({ code }) {
     );
 
     setUserPlaylists(newPlaylistList);
+    setViewPlaylists(true);
   }
 
   return (
