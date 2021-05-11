@@ -5,6 +5,7 @@ import Track from "./Track";
 import Player from "./Player";
 import Playlist from "./Playlist";
 import CreatePlaylist from "./CreatePlaylist";
+import EditPlaylist from "./EditPlaylist";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -27,7 +28,9 @@ export default function Dashboard({ code }) {
   const [searchResults, setSearchResults] = useState([]);
   const [lyrics, setLyrics] = useState("");
 
+  const [editList, setEditList] = useState(false);
   const [playlist, setPlaylist] = useState("");
+  const [playlistObj, setPlaylistObj] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
   const [userPlayLists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
@@ -115,6 +118,8 @@ export default function Dashboard({ code }) {
 
   function showPlaylists() {
     setViewPlaylists(!viewPlaylists);
+    setSearchResults([]);
+    setSearch("");
     setCreatePlaylist(false);
     setPlaylistTable(false);
   }
@@ -154,6 +159,14 @@ export default function Dashboard({ code }) {
           console.log("Something went wrong!", err);
         }
       );
+    spotifyApi.getPlaylist(playlist).then(
+      function (data) {
+        setPlaylistObj(data.body);
+      },
+      function (err) {
+        console.log("Something went wrong!", err);
+      }
+    );
     setViewPlaylists(false);
     setPlaylistTable(true);
     setAddedCurrentSong(false);
@@ -170,13 +183,18 @@ export default function Dashboard({ code }) {
       }
     );
     setAddedCurrentSong(true);
+    setViewPlaylists(false);
+    setPlaylistTable(false);
+    setSearchResults([]);
   }
 
-  function editPlayList() {
-    console.log("edit");
+  function editPlaylist() {
+    setEditList(!editList);
+    setViewPlaylists(false);
+    setPlaylistTable(false);
   }
 
-  function removePlayList() {
+  function removePlaylist() {
     console.log("remove");
   }
 
@@ -191,7 +209,9 @@ export default function Dashboard({ code }) {
             ? "Create New Playlist"
             : "Cancel New Playlist"}
         </Button>
-        {playlist && playingTrack && addedCurrentSong === false ? (
+        {playlist !== "" &&
+        playingTrack !== undefined &&
+        addedCurrentSong === false ? (
           <Button
             variant="contained"
             onClick={addCurrentSongToSelectedPlaylist}
@@ -242,6 +262,15 @@ export default function Dashboard({ code }) {
         </div>
       </div>
 
+      {editList === false ? null : (
+        <EditPlaylist
+          spotifyApi={spotifyApi}
+          playlist={playlist}
+          playlistObj={playlistObj}
+          setEditList={setEditList}
+        />
+      )}
+
       <div className="playlist-list">
         {userPlayLists.length === 0
           ? null
@@ -250,35 +279,38 @@ export default function Dashboard({ code }) {
                 <Playlist
                   key={playlist.id}
                   playlist={playlist}
-                  editPlayList={editPlayList}
-                  removePlayList={removePlayList}
+                  editPlaylist={editPlaylist}
+                  removePlaylist={removePlaylist}
                 />
               </div>
             ))}
       </div>
 
-      {playlistTable === true && playlistSongs.length > 0 ? (
-        <div className="show-list">
-          {playlistSongs.map((track) => {
-            return (
-              //   <div className="show-item" onClick={chooseTrack}>
-              //     <p className="artist-name">{track.track.artists[0].name}</p>
-              //     <p className="song-title">{track.track.name}</p>
-              //     <img
-              //       className="album-art"
-              //       src={track.track.album.images[0].url}
-              //       alt="album-art"
-              //     />
-              //   </div>
-              <Track
-                id={track.uri}
-                className="track-search-results"
-                track={track}
-                key={track.uri}
-                chooseTrack={chooseTrack}
-              />
-            );
-          })}
+      {playlistTable === true &&
+      editList === false &&
+      playlistSongs.length > 0 ? (
+        <div>
+          <div className="playlist-info">
+            <h1 className="playlist-title">{playlistObj.name}</h1>
+            <p className="playlist-title">{playlistObj.description}</p>
+            <Button onClick={editPlaylist} variant="outlined">
+              Edit Details
+            </Button>
+          </div>
+
+          <div className="show-list">
+            {playlistSongs.map((track, i) => {
+              return (
+                <Track
+                  id={track.uri}
+                  className="track-search-results"
+                  track={track}
+                  key={i}
+                  chooseTrack={chooseTrack}
+                />
+              );
+            })}
+          </div>
         </div>
       ) : null}
 
