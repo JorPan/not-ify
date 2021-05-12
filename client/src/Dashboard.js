@@ -261,6 +261,15 @@ export default function Dashboard({ code }) {
             </Button>
           )}
         </form>
+        {editList === false ? null : (
+          <EditPlaylist
+            spotifyApi={spotifyApi}
+            playlist={playlist}
+            playlistObj={playlistObj}
+            setEditList={setEditList}
+            cancelEdit={cancelEdit}
+          />
+        )}
         <div className="search-results">
           {searchResults.map((track) => {
             return (
@@ -285,16 +294,6 @@ export default function Dashboard({ code }) {
           </div>
         </div>
       </div>
-
-      {editList === false ? null : (
-        <EditPlaylist
-          spotifyApi={spotifyApi}
-          playlist={playlist}
-          playlistObj={playlistObj}
-          setEditList={setEditList}
-          cancelEdit={cancelEdit}
-        />
-      )}
 
       <div className="playlist-list">
         {viewPlaylists === false

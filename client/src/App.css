@@ -4,6 +4,7 @@
   font-family: "Roboto", sans-serif;
   margin-left: 15vw;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .login-page {
@@ -133,6 +134,11 @@
 
 .playlist-form {
   margin-top: -10vh;
+  display: flex;
+  justify-content: center;
+}
+.edit-playlist-form {
+  margin-top: 10vh;
   display: flex;
   justify-content: center;
 }

@@ -45,7 +45,7 @@ function EditPlaylist({
 
   return (
     <div>
-      <form className="playlist-form" noValidate autoComplete="off">
+      <form className="edit-playlist-form" noValidate autoComplete="off">
         <TextField
           variant="outlined"
           className="playlist-bar"
