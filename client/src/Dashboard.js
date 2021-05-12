@@ -32,6 +32,7 @@ export default function Dashboard({ code }) {
   const [createPlaylist, setCreatePlaylist] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [viewPlaylists, setViewPlaylists] = useState(false);
+  const [loadPlaylists, setLoadPlaylists] = useState(false);
   const [addedCurrentSong, setAddedCurrentSong] = useState(false);
   const [playlistSongs, setPlaylistSongs] = useState([]);
   const [playlistTable, setPlaylistTable] = useState(false);
@@ -48,8 +49,8 @@ export default function Dashboard({ code }) {
   });
 
   useEffect(() => {
-    if (userPlaylists.length > 0) setUserPlaylists(userPlaylists);
-    else if (user) {
+    // if (userPlaylists.length > 0) setUserPlaylists(userPlaylists);
+    if (user) {
       spotifyApi.getUserPlaylists(user).then(
         (data) => {
           setUserPlaylists(data.body.items);
@@ -59,7 +60,7 @@ export default function Dashboard({ code }) {
         }
       );
     }
-  }, [userPlaylists, user]);
+  }, [loadPlaylists]);
 
   //   useEffect(() => {
   //     if (user) {
@@ -129,6 +130,7 @@ export default function Dashboard({ code }) {
   }, [search, accessToken]);
 
   function showPlaylists() {
+    setLoadPlaylists(true);
     setViewPlaylists(!viewPlaylists);
     setSearchResults([]);
     setSearch("");
@@ -203,7 +205,9 @@ export default function Dashboard({ code }) {
   function editPlaylist() {
     setEditList(!editList);
     setPlaylistTable(false);
-    setViewPlaylists(true);
+    setViewPlaylists(false);
+    setLoadPlaylists(true);
+    setLoadPlaylists(false);
   }
 
   function cancelEdit() {
@@ -219,7 +223,7 @@ export default function Dashboard({ code }) {
     );
 
     setUserPlaylists(newPlaylistList);
-    setViewPlaylists(true);
+    // setViewPlaylists(true);
   }
 
   return (
@@ -294,7 +298,6 @@ export default function Dashboard({ code }) {
           </div>
         </div>
       </div>
-
       <div className="playlist-list">
         {viewPlaylists === false
           ? null
@@ -308,7 +311,6 @@ export default function Dashboard({ code }) {
               </div>
             ))}
       </div>
-
       {playlistTable === true &&
       editList === false &&
       playlistSongs.length > 0 ? (
@@ -350,7 +352,6 @@ export default function Dashboard({ code }) {
       {createPlaylist === false ? null : (
         <CreatePlaylist spotifyApi={spotifyApi} />
       )}
-
       <div className="bottom">
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>

@@ -8,9 +8,9 @@ const columns: GridColDef[] = [
   { field: "col4", headerName: "Play", width: 150 },
 ];
 
-let playlistRows: GridRowsProp = [];
-
 export default function PlaylistTable({ playlist }) {
+  const playlistRows: GridRowsProp = [];
+
   playlist.map((track, i) => {
     playlistRows.push({
       id: i,
