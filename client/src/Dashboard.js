@@ -223,7 +223,7 @@ export default function Dashboard({ code }) {
     );
 
     setUserPlaylists(newPlaylistList);
-    // setViewPlaylists(true);
+    setViewPlaylists(true);
   }
 
   return (
