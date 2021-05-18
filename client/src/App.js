@@ -10,7 +10,7 @@ function App() {
     window.location.replace("/");
   };
   return (
-    <div>
+    <div className="app">
       <h1 onClick={reload} className="title">
         Not-ify
       </h1>

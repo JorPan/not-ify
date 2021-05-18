@@ -1,10 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
+.html {
+  background: black;
+}
+
+.app {
+  border-radius: 30px;
+  margin-top: 0;
+  position: absolute;
+  width: 100vw;
+  margin: 0vw;
+  background: rgb(229, 250, 229);
+}
+
 .title {
   font-family: "Roboto", sans-serif;
   margin-left: 15vw;
   text-decoration: underline;
   cursor: pointer;
+  color: rgb(46, 211, 46);
 }
 
 .login-page {
@@ -18,6 +32,7 @@
   background-color: rgb(46, 211, 46);
   color: white;
   padding: 1rem;
+  margin: 2rem;
   border-radius: 15px;
 }
 
@@ -26,11 +41,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  /* margin-top: -20vh; */
+  background: rgb(197, 238, 193);
+  border-radius: 30px;
 }
 
 .search-bar {
   width: 50vw;
+  background: white;
 }
 
 .album-art {
@@ -49,13 +66,14 @@
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(226, 226, 226);
-  width: 150px;
-  height: 150px;
+  width: 15vw;
+  height: 20vh;
   border-radius: 10px;
-  margin: 3px;
-  padding: 2px;
+  margin: 30px;
+  padding: 30px;
   cursor: pointer;
   align-items: center;
+  background: rgb(218, 255, 218);
 }
 
 .buttons {
@@ -96,11 +114,19 @@
 .artist-name {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .song-title {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
+  padding: 15px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .playlist-list {
@@ -110,6 +136,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  background: rgb(186, 255, 186);
+  border-radius: 30px;
 }
 
 .playlist {
@@ -123,8 +151,9 @@
   align-items: center;
   text-align: center;
   border-radius: 10px;
-  margin: 2px;
+  margin: 20px;
   cursor: pointer;
+  background-color: rgb(229, 250, 229);
 }
 
 .playlist-image {
@@ -188,7 +217,7 @@
   display: flex;
   justify-content: center;
   font-family: "Roboto", sans-serif;
-  background-color: rgb(46, 211, 46);
+  background-color: rgb(172, 226, 172);
   color: white;
   border-radius: 3px;
   box-shadow: 1px 1px 1px 1px rgb(44, 116, 66);
@@ -202,6 +231,8 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 10vh;
+  background: rgb(172, 226, 172);
+  border-radius: 30px;
 }
 
 .show-item {
