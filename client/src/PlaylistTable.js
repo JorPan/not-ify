@@ -1,17 +1,19 @@
-import { DataGrid, GridRowsProp, GridColDef } from "@material-ui/data-grid";
+import { DataGrid } from "@material-ui/data-grid";
 // import { useEffect } from "react";
 
-const columns: GridColDef[] = [
-  { field: "col1", headerName: "ID", width: 150 },
-  { field: "col2", headerName: "Track", width: 150 },
-  { field: "col3", headerName: "Artist", width: 150 },
-  { field: "col4", headerName: "Play", width: 150 },
-];
-
 export default function PlaylistTable({ playlist }) {
-  const playlistRows: GridRowsProp = [];
+  const columns = [
+    { field: "col1", headerName: "ID", width: 150 },
+    { field: "col2", headerName: "Track", width: 150 },
+    { field: "col3", headerName: "Artist", width: 150 },
+    { field: "col4", headerName: "Play", width: 150 },
+  ];
 
-  playlist.map((track, i) => {
+  console.log(playlist);
+
+  const playlistRows = [];
+
+  playlist.forEach((track, i) => {
     playlistRows.push({
       id: i,
       col1: i,

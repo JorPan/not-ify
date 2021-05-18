@@ -345,6 +345,7 @@ export default function Dashboard({ code }) {
 
       {/* {playlistTable === true &&
       editList === false &&
+      viewPlaylists == false &&
       playlistSongs.length > 0 ? (
         <PlaylistTable playlist={playlistSongs} />
       ) : null} */}
@@ -352,6 +353,7 @@ export default function Dashboard({ code }) {
       {createPlaylist === false ? null : (
         <CreatePlaylist spotifyApi={spotifyApi} />
       )}
+
       <div className="bottom">
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
