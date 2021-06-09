@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
-.html {
-  background: black;
+.full-app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 255, 85, 0.541);
 }
 
 .app {
@@ -46,7 +51,7 @@
 }
 
 .search-bar {
-  width: 50vw;
+  width: 55vw;
   background: white;
 }
 
@@ -131,7 +136,7 @@
 
 .playlist-list {
   margin-bottom: 10vh;
-  margin-top: -17vh;
+  margin-top: -10vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -174,6 +179,7 @@
 
 .playlist-bar {
   width: 30vw;
+  background-color: white;
 }
 
 .playlist-title {
@@ -194,6 +200,7 @@
 
 .description-bar {
   width: 40vw;
+  background-color: white;
 }
 
 .playlist-id {

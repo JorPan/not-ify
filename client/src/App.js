@@ -10,11 +10,13 @@ function App() {
     window.location.replace("/");
   };
   return (
-    <div className="app">
-      <h1 onClick={reload} className="title">
-        Not-ify
-      </h1>
-      {code ? <Dashboard code={code} /> : <Login className="login-page" />}
+    <div className="full-app">
+      <div className="app">
+        <h1 onClick={reload} className="title">
+          Not-ify
+        </h1>
+        {code ? <Dashboard code={code} /> : <Login className="login-page" />}
+      </div>
     </div>
   );
 }

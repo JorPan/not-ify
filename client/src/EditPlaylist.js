@@ -73,7 +73,7 @@ function EditPlaylist({
         <Button variant="contained" onClick={editPlaylist}>
           Save Playlist
         </Button>
-        <Button onClick={cancelEdit} variant="outlined">
+        <Button onClick={cancelEdit} variant="contained">
           Cancel
         </Button>
       </form>

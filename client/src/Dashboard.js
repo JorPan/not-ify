@@ -318,11 +318,11 @@ export default function Dashboard({ code }) {
           <div className="playlist-info">
             <h1 className="playlist-title">{playlistObj.name}</h1>
             <p className="playlist-title">{playlistObj.description}</p>
-            <Button onClick={editPlaylist} variant="outlined">
+            <Button onClick={editPlaylist} variant="contained">
               Edit Details
             </Button>
 
-            <Button onClick={removePlaylist} variant="outlined">
+            <Button onClick={removePlaylist} variant="contained">
               Remove
             </Button>
           </div>
