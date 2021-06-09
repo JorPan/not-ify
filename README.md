@@ -28,8 +28,9 @@ Click a Playlist to view the songs in it
 Click a Song to play it
 Search Songs / Artists
 Create New Playlists
+Edit Playlist Info
+Remove Playlists (from state, not actually from your spotify account)
 
 COMING SOON:
 
-- Edit playlist info
-- Remove playlists
+- Playlist Tables!
