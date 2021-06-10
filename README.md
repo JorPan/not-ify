@@ -1,8 +1,8 @@
 # not-ify
 
-definitely not spotify
+It's ... definitely NOT Spotify
 
-.. but you can log in with your spotify account, search for artists/ songs, click a result to play it, AND see the lyrics!
+.. but you can log in with your Spotify account, search for artists/ songs, click a result to play it, AND see the lyrics!
 Now you can also view your playlists, create a new playlist, select a playlist by clicking on it's card, and add the currently playing song to the selected playlist.
 
 # To use this app:
@@ -22,6 +22,8 @@ Client Set Up
   - npm start
 
 Click to log in via spotify
+
+# Features:
 
 View Playlists
 Click a Playlist to view the songs in it
