@@ -2,8 +2,9 @@
 
 It's .. definitely NOT Spotify
 
-but, you can log in with your Spotify account, search for artists/ songs, click a result to play it, AND see the lyrics!
-Now you can also view your playlists, create a new playlist, select a playlist by clicking on it's card, and add the currently playing song to the selected playlist.
+But, you CAN log in with your Spotify account, search for artists/ songs, click a result to play it, AND <b>see the lyrics</b>!
+
+You can also view your real playlists, create new playlists, select a playlist by clicking on it's card, and add the currently playing song to the selected playlist.
 
 # To use this app:
 
@@ -27,7 +28,7 @@ Click to log in via spotify
 
 View Playlists
 Click a Playlist to view the songs in it
-Click a Song to play it
+Click a Song to play it and it AUTOMATICALLY pulls and displayes song lyrics
 Search Songs / Artists
 Create New Playlists
 Edit Playlist Info
