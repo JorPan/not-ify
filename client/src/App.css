@@ -10,12 +10,12 @@
 }
 
 .app {
-  border-radius: 30px;
+  /* border-radius: 30px; */
   margin-top: 0;
   position: absolute;
   width: 100vw;
   margin: 0vw;
-  background: rgb(229, 250, 229);
+  background: rgb(216, 255, 216);
 }
 
 .title {
@@ -46,7 +46,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background: rgb(197, 238, 193);
+  background: rgb(194, 255, 189);
   border-radius: 30px;
 }
 
@@ -70,7 +70,7 @@
 .search-result {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(226, 226, 226);
+  border: 1px solid rgb(146, 255, 182);
   width: 15vw;
   height: 20vh;
   border-radius: 10px;
@@ -78,7 +78,7 @@
   padding: 30px;
   cursor: pointer;
   align-items: center;
-  background: rgb(218, 255, 218);
+  background: rgb(150, 255, 150);
 }
 
 .buttons {
@@ -141,7 +141,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background: rgb(186, 255, 186);
+  background: rgb(133, 255, 133);
   border-radius: 30px;
 }
 
@@ -158,7 +158,7 @@
   border-radius: 10px;
   margin: 20px;
   cursor: pointer;
-  background-color: rgb(229, 250, 229);
+  background-color: rgb(192, 245, 192);
 }
 
 .playlist-image {
@@ -238,7 +238,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 10vh;
-  background: rgb(172, 226, 172);
+  background: rgb(155, 250, 155);
   border-radius: 30px;
 }
 
