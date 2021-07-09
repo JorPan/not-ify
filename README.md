@@ -6,6 +6,11 @@ But, you CAN log in with your Spotify account, search for artists/ songs, click 
 
 You can also view your real playlists, create new playlists, select a playlist by clicking on it's card, and add the currently playing song to the selected playlist.
 
+# Technologies
+- React
+- Node
+- Spotify web API
+
 # To use this app:
 
 - Clone this repo & open it : "git clone [copied url] [new file name]"
