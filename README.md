@@ -4,7 +4,7 @@ It's .. definitely NOT Spotify
 
 But, you CAN log in with your Spotify account, search for artists/ songs, click a result to play it, AND <b>see the lyrics</b>!
 
-You can also view your real playlists, create new playlists, select a playlist by clicking on it's card, and add the currently playing song to the selected playlist.
+You can also view your real playlists, create new playlists, select a playlist by clicking on its card, and add the currently playing song to the selected playlist.
 
 # Technologies
 - React
