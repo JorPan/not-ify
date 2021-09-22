@@ -1,6 +1,6 @@
 # not-ify
 
-It's .. definitely NOT Spotify
+It's .. definitely NOT Spotify...
 
 But, you CAN log in with your Spotify account, search for artists/ songs, click a result to play it, AND <b>see the lyrics</b>!
 
